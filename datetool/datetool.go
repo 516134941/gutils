@@ -75,7 +75,8 @@ func GetZeroTimeString(timeStr string) string {
 	return tm.Format("2006-01-02 15:04:05")
 }
 
-// TimeSubDays Determine how many days difference between the two times 返回两个时间相差天数
+// TimeSubDays  返回两个时间相差天数
+// Determine how many days difference between the two times
 func TimeSubDays(t1, t2 time.Time) int {
 	if t1.Location().String() != t2.Location().String() {
 		return -1
@@ -101,7 +102,8 @@ func TimeSubDays(t1, t2 time.Time) int {
 	return int(hours/24) + 1
 }
 
-// GetTimeYearMonthDay Get the year, month, and day of the incoming time separately 分别获取传入时间的年月日
+// GetTimeYearMonthDay 分别获取传入时间的年月日
+// Get the year, month, and day of the incoming time separately
 func GetTimeYearMonthDay(date string) (year, month, day string) {
 	loc, _ := time.LoadLocation("Local")
 	tm, _ := time.ParseInLocation("2006-01-02 15:04:05", date, loc)
