@@ -3,6 +3,7 @@ package structtool
 
 import (
 	"fmt"
+	"net/url"
 	"reflect"
 	"strconv"
 )
@@ -81,4 +82,25 @@ func StructCopy(dst interface{}, src interface{}) {
 		}
 	}
 	return
+}
+
+// StructURLDecode 将接受的请求参数进行url-decode处理
+// Will accept the request parameters for url-decode processing
+func StructURLDecode(objReq interface{}) interface{} {
+	t := reflect.TypeOf(objReq)
+	v := reflect.ValueOf(objReq)
+	if t.Kind() == reflect.Ptr {
+		t = t.Elem()
+		v = v.Elem()
+	}
+	for i := 0; i < t.NumField(); i++ {
+		switch v.Field(i).Interface().(type) {
+		case string:
+			decodeString, _ := url.QueryUnescape(v.Field(i).String())
+			v.Field(i).Set(reflect.ValueOf(decodeString))
+		default:
+			continue
+		}
+	}
+	return objReq
 }

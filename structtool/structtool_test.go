@@ -55,3 +55,23 @@ func TestStructCopy(t *testing.T) {
 	StructCopy(exp2, exp1)
 	t.Logf("exp1:%v   exp2:%v", exp1, exp2) // exp1:&{1.4444444 0.0222222222 5 0xc00008a080 ddd}   exp2:&{0 0.0222222222 5 0xc00008a080 0}
 }
+
+func TestStructURLDecode(t *testing.T) {
+	type Request struct {
+		AppID       string
+		Count       int
+		PageNo      int
+		PlateNumber string
+		Signature   string
+	}
+	req := &Request{
+		AppID:       "aaaa",
+		Count:       10,
+		PageNo:      1,
+		PlateNumber: "%E8%B5%A3A84897",
+		Signature:   "sh%2FuYfecIceZ%2FWKLRdmEkQ%3D%3D",
+	}
+	t.Logf("req:%v\n", req) // req:&{aaaa 10 1 %E8%B5%A3A84897 sh%2FuYfecIceZ%2FWKLRdmEkQ%3D%3D}
+	req = StructURLDecode(req).(*Request)
+	t.Logf("decode req:%v\n", req) // decode req:&{aaaa 10 1 赣A84897 sh/uYfecIceZ/WKLRdmEkQ==}
+}
