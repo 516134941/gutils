@@ -83,7 +83,8 @@ func TimeSubDays(t1, t2 time.Time) int {
 	}
 	hours := t1.Sub(t2).Hours()
 	if hours < 0 {
-		return -1
+		t1, t2 = t2, t1
+		hours = t1.Sub(t2).Hours()
 	} else if hours == 0 {
 		return 0
 	}

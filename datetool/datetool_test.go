@@ -40,9 +40,12 @@ func TestGetZeroTimeString(t *testing.T) {
 
 func TestTimeSubDays(t *testing.T) {
 	t1 := time.Now()
-	t2 := t1.Add(-333 * time.Hour)
+	t2 := t1.Add(333 * time.Hour)
 	days := TimeSubDays(t1, t2)
 	t.Logf("days:%v", days) //  days:14
+	t3 := t1.Add(-333 * time.Hour)
+	days2 := TimeSubDays(t1, t3)
+	t.Logf("days:%v", days2) //  days:14
 }
 
 func TestGetTimeYearMonthDay(t *testing.T) {
