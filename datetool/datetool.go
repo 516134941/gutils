@@ -141,3 +141,9 @@ func GetTimeTypeAndFormat(date string) (dateType, startDate, endDate string) {
 	}
 	return
 }
+
+// GetISOYearWeek 获取年周 传入时间获取对应的年和周
+func GetISOYearWeek(t time.Time) (y, w int) {
+	y, w = t.ISOWeek()
+	return
+}

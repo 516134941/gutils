@@ -39,8 +39,8 @@ func TestGetZeroTimeString(t *testing.T) {
 }
 
 func TestTimeSubDays(t *testing.T) {
-	t1 := time.Now()
-	t2 := t1.Add(333 * time.Hour)
+	t2, _ := time.Parse("2006-01-02 15:04:05", "2019-09-21 12:00:31")
+	t1, _ := time.Parse("2006-01-02 15:04:05", "2019-09-22 12:22:31")
 	days := TimeSubDays(t1, t2)
 	t.Logf("days:%v", days) //  days:14
 	t3 := t1.Add(-333 * time.Hour)
@@ -66,4 +66,10 @@ func TestGetTimeTypeAndFormat(t *testing.T) {
 	t.Logf("start:%v  end:%v  dateType:%v", startDate, endDate, dateType) // start:2019-08-01  end:2019-09-01  dateType:month
 	dateType, startDate, endDate = GetTimeTypeAndFormat(t3)
 	t.Logf("start:%v  end:%v  dateType:%v", startDate, endDate, dateType) // start:2019-08-05  end:2019-08-06  dateType:day
+}
+
+func TestGetISOYearWeek(t *testing.T) {
+	t1 := time.Now()
+	y, w := GetISOYearWeek(t1)
+	t.Logf("year:%v, week:%v", y, w) // year:2019, week:45
 }
