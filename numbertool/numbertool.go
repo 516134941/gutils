@@ -1,4 +1,4 @@
-package arraytool
+package numbertool
 
 import (
 	"strings"
@@ -8,6 +8,7 @@ import (
 func IsNumeric(val interface{}) bool {
 	switch val.(type) {
 	case int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64:
+		return true
 	case float32, float64, complex64, complex128:
 		return true
 	case string:
@@ -55,11 +56,10 @@ func IsNumeric(val interface{}) bool {
 	return false
 }
 
-// IsInclouldArray 比较一个数组是否包含在另一个数组
-func IsInclouldArray(arry3, arry4 []interface{}) bool {
+// IsInclouldArray 比较一个不重复数组是否包含在另一个不重复数组
+func IsInclouldArray(arry3, arry4 []int) bool {
 	flag := false
 	k := 0
-
 	if len(arry3) == 0 {
 		return true
 	}
@@ -72,17 +72,15 @@ func IsInclouldArray(arry3, arry4 []interface{}) bool {
 	if len(arry3) < len(arry4) {
 		arry1, arry2 = arry4, arry3
 	}
-
 	for i := 0; i < len(arry1); i++ {
 		for j := 0; j < len(arry2); j++ {
 			if arry1[i] == arry2[j] {
 				k++
-				continue
+				break
 			}
 		}
 	}
-
-	if k == len(arry2){
+	if k == len(arry2) {
 		flag = true
 	}
 	return flag
