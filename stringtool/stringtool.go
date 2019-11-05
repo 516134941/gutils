@@ -1,9 +1,7 @@
 package stringtool
 
 import (
-	"fmt"
 	"math/rand"
-	"net/url"
 	"time"
 )
 
@@ -18,17 +16,3 @@ func GetRandomString(size int) string {
 	}
 	return string(result)
 }
-
-// GetMapByURL 通过传入的URL返回map[string]string 的格式
-func GetMapByURL(value url.Values) (map[string]string, error) {
-	m := make(map[string]string, 0)
-	for k, v := range value {
-		if len(v) >= 2 {
-			return nil, fmt.Errorf("参数%v存在不确定性", k)
-		}
-		m[k] = v[0]
-	}
-	return m, nil
-}
-
-
