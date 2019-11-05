@@ -39,13 +39,9 @@ func TestGetZeroTimeString(t *testing.T) {
 }
 
 func TestTimeSubDays(t *testing.T) {
-<<<<<<< HEAD
-	t2, _ := time.Parse("2006-01-02 15:04:05", "2019-09-21 12:00:31")
-	t1, _ := time.Parse("2006-01-02 15:04:05", "2019-09-22 12:22:31")
-=======
+
 	t1 := time.Now()
 	t2 := t1.Add(333 * time.Hour)
->>>>>>> 478fa94703ac38119eb799227c0e65ef59a70144
 	days := TimeSubDays(t1, t2)
 	t.Logf("days:%v", days) //  days:14
 	t3 := t1.Add(-333 * time.Hour)
