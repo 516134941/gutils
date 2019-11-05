@@ -43,6 +43,9 @@ func TestTimeSubDays(t *testing.T) {
 	t1, _ := time.Parse("2006-01-02 15:04:05", "2019-09-22 12:22:31")
 	days := TimeSubDays(t1, t2)
 	t.Logf("days:%v", days) //  days:14
+	t3 := t1.Add(-333 * time.Hour)
+	days2 := TimeSubDays(t1, t3)
+	t.Logf("days:%v", days2) //  days:14
 }
 
 func TestGetTimeYearMonthDay(t *testing.T) {
